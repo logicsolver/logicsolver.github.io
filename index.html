@@ -246,7 +246,7 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="./index.html">Home</a>
         <a href="/about/">About</a>
-        <a href="./learn.html">Learn</a>
+        <a href="./learn">Learn</a>
         <a href="./privacy-policy.html">Privacy</a>
         <a href="./terms.html">Terms</a>
         <a href="./disclaimer.html">Disclaimer</a>
@@ -285,7 +285,7 @@
     <section class="learn-section" aria-label="Learn">
       <h3>Learn</h3>
       <div class="learn-previews" id="learnPreviews"></div>
-      <a href="./learn.html" class="more">View all posts →</a>
+      <a href="./learn" class="more">View all posts →</a>
     </section>
 
     <footer>
@@ -299,7 +299,7 @@
       const el = document.getElementById('learnPreviews');
       if (el && window.BLOG_ENTRIES && BLOG_ENTRIES.length) {
         el.innerHTML = BLOG_ENTRIES.map(function (b) {
-          return '<div class="blog-preview"><a href="' + (b.url || './learn.html') + '"><h4>' + (b.title || '') + '</h4><p>' + (b.excerpt || '') + '</p></a></div>';
+          return '<div class="blog-preview"><a href="' + (b.url || './learn') + '"><h4>' + (b.title || '') + '</h4><p>' + (b.excerpt || '') + '</p></a></div>';
         }).join('');
       }
     })();
