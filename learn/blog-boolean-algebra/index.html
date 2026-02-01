@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boolean Algebra Basics | Logic Tools Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #0e1627;
+      --accent: #22d3ee;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2a40;
+      --shadow: 0 18px 40px rgba(0,0,0,0.35);
+      --hover: #1e293b;
+    }
+    body.light {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --panel-2: #f1f5f9;
+      --accent: #2563eb;
+      --text: #0f172a;
+      --muted: #4b5563;
+      --border: #d7deea;
+      --shadow: 0 10px 22px rgba(15, 23, 42, 0.15);
+      --hover: #e3e8f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+      padding: 16px 24px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .nav { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.08s ease, background 0.2s ease;
+    }
+    .nav a:hover { transform: translateY(-1px); background: var(--hover); }
+    button {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.08s ease, background 0.2s ease;
+    }
+    button:hover { transform: translateY(-1px); background: var(--hover); }
+    .blog-title { margin: 0 0 8px; font-size: 28px; color: var(--accent); }
+    .back-link { display: inline-block; margin-bottom: 24px; color: var(--accent); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    .blog-body { color: var(--text); font-size: 16px; line-height: 1.7; }
+    .blog-body p { margin: 0 0 1em; }
+    .blog-body a { color: var(--accent); }
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+      margin-top: 48px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="./index.html">Home</a>
+        <a href="./index.html">Tools</a>
+        <a href="./about.html">About</a>
+        <a href="./learn">Learn</a>
+        <a href="./privacy-policy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./disclaimer.html">Disclaimer</a>
+      </nav>
+      <button id="themeToggle">Switch theme</button>
+    </div>
+
+    <a href="./learn" class="back-link">← Back to Learn</a>
+    <h1 class="blog-title">Boolean Algebra Basics</h1>
+    <article class="blog-body">
+      <p>AND, OR, NOT, and beyond. Boolean algebra uses variables that take only two values—true (1) or false (0)—and operators that combine them.</p>
+      <p>A quick primer on boolean operators: AND gives 1 only when all inputs are 1; OR gives 1 when any input is 1; NOT flips the value. These combine to form logic expressions used in circuits and software. Try the <a href="./expression.html">Expression Analyzer</a> to convert and simplify expressions.</p>
+    </article>
+
+    <footer>
+      <p>&copy; 2026 Logic Tools Suite.</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var themeBtn = document.getElementById('themeToggle');
+      function applyTheme() {
+        var saved = localStorage.getItem('logic-theme');
+        document.body.classList.toggle('light', saved === 'light');
+        themeBtn.textContent = document.body.classList.contains('light') ? 'Switch to dark' : 'Switch to light';
+      }
+      themeBtn.addEventListener('click', function () {
+        document.body.classList.toggle('light');
+        localStorage.setItem('logic-theme', document.body.classList.contains('light') ? 'light' : 'dark');
+        applyTheme();
+      });
+      applyTheme();
+    })();
+  </script>
+</body>
+</html>
