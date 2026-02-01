@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8548954355987667"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logic Tools Suite | Digital Logic & Number Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #0e1627;
+      --accent: #22d3ee;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2a40;
+      --shadow: 0 18px 40px rgba(0,0,0,0.35);
+      --hover: #1e293b;
+    }
+    body.light {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --panel-2: #f1f5f9;
+      --accent: #2563eb;
+      --text: #0f172a;
+      --muted: #4b5563;
+      --border: #d7deea;
+      --shadow: 0 10px 22px rgba(15, 23, 42, 0.15);
+      --hover: #e3e8f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+      padding: 16px 24px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .learn-section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 48px;
+    }
+    .learn-section h3 {
+      margin: 0 0 20px;
+      font-size: 20px;
+      letter-spacing: 0.2px;
+      color: var(--accent);
+    }
+    .learn-section a.more {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .learn-section a.more:hover { text-decoration: underline; }
+    .learn-previews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .blog-preview {
+      padding: 16px;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .blog-preview a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .blog-preview a:hover { color: var(--accent); }
+    .blog-preview h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .blog-preview p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      transition: transform 0.08s ease, background 0.2s ease;
+    }
+    .nav a:hover {
+      transform: translateY(-1px);
+      background: var(--hover);
+    }
+    button {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.08s ease, background 0.2s ease;
+    }
+    button:hover {
+      transform: translateY(-1px);
+      background: var(--hover);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 36px;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .tool-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.45);
+    }
+    body.light .tool-card:hover {
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.2);
+    }
+    .tool-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--accent), #06b6d4);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: #021018;
+    }
+    .tool-card h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.2px;
+    }
+    .tool-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    .tool-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(34, 211, 238, 0.15);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      border-radius: 8px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      align-self: flex-start;
+    }
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+      margin-top: 48px;
+    }
+    @media (max-width: 768px) {
+      header h1 { font-size: 28px; }
+      header p { font-size: 16px; }
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./learn.html">Learn</a>
+        <a href="./privacy-policy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./disclaimer.html">Disclaimer</a>
+      </nav>
+      <button id="themeToggle">Switch theme</button>
+    </div>
+
+    <header>
+      <h1>Logic Tools Suite</h1>
+      <p>Professional tools for digital logic design and number system conversion</p>
+    </header>
+
+    <div class="tools-grid">
+      <a href="./truth-table.html" class="tool-card">
+        <div class="tool-icon">TT</div>
+        <h2>Truth Table Simplifier</h2>
+        <p>Build truth tables and simplify to minimal SOP/POS expressions using Quine-McCluskey algorithm with visual interactive interface.</p>
+        <span class="tool-badge">INTERACTIVE</span>
+      </a>
+
+      <a href="./expression.html" class="tool-card">
+        <div class="tool-icon">FX</div>
+        <h2>Expression Analyzer</h2>
+        <p>Convert boolean expressions to truth tables and analyze logic. Generate both SOP and POS forms from any expression.</p>
+        <span class="tool-badge">ANALYZER</span>
+      </a>
+
+      <a href="./converter.html" class="tool-card">
+        <div class="tool-icon">2→</div>
+        <h2>Number System Converter</h2>
+        <p>Convert between Binary, Octal, Decimal, and Hexadecimal number systems with instant results and validation.</p>
+        <span class="tool-badge">CONVERTER</span>
+      </a>
+    </div>
+
+    <section class="learn-section" aria-label="Learn">
+      <h3>Learn</h3>
+      <div class="learn-previews" id="learnPreviews"></div>
+      <a href="./learn.html" class="more">View all posts →</a>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Logic Tools Suite. All tools are free and run entirely in your browser.</p>
+    </footer>
+  </div>
+
+  <script src="./blogs.js"></script>
+  <script>
+    (function () {
+      const el = document.getElementById('learnPreviews');
+      if (el && window.BLOG_ENTRIES && BLOG_ENTRIES.length) {
+        el.innerHTML = BLOG_ENTRIES.map(function (b) {
+          return '<div class="blog-preview"><a href="' + (b.url || './learn.html') + '"><h4>' + (b.title || '') + '</h4><p>' + (b.excerpt || '') + '</p></a></div>';
+        }).join('');
+      }
+    })();
+    const themeBtn = document.getElementById('themeToggle');
+    function applyTheme() {
+      const saved = localStorage.getItem('logic-theme');
+      document.body.classList.toggle('light', saved === 'light');
+      themeBtn.textContent = document.body.classList.contains('light') ? 'Switch to dark' : 'Switch to light';
+    }
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('logic-theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      applyTheme();
+    });
+    applyTheme();
+  </script>
+<script type="text/javascript">
+var infolinks_pid = 3443171;
+var infolinks_wsid = 0;
+</script>
+<script type="text/javascript" src="http://resources.infolinks.com/js/infolinks_main.js"></script>
+</body>
+</html>

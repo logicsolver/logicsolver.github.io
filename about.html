@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8548954355987667"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #0e1627;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2a40;
+      --shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+    body.light {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --panel-2: #f1f5f9;
+      --text: #0f172a;
+      --muted: #4b5563;
+      --border: #d7deea;
+      --shadow: 0 10px 22px rgba(15, 23, 42, 0.15);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .shell {
+      width: min(980px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 22px 24px 26px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .nav a, button {
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      transition: transform 0.08s ease, background 0.2s ease;
+    }
+    .nav a:hover, button:hover { transform: translateY(-1px); }
+    header {
+      text-align: center;
+      margin-top: 4px;
+    }
+    header h1 { margin: 0; font-size: 22px; }
+    header p { margin: 8px 0 0; color: var(--muted); }
+    .content {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      background: var(--panel-2);
+      color: var(--muted);
+      min-height: 240px;
+      line-height: 1.7;
+    }
+    .content h2 {
+      color: var(--text);
+      margin-top: 0;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <nav class="nav" aria-label="Top navigation">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About Us</a>
+        <a href="./privacy-policy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./disclaimer.html">Disclaimer</a>
+      </nav>
+      <button id="themeToggle">Switch theme</button>
+    </div>
+
+    <header>
+      <h1>About Us</h1>
+      <p>Learn what this site does and who it is designed for.</p>
+    </header>
+
+    <main class="content">
+      <h2>What This Website Does</h2>
+      <p>
+        This website provides interactive tools for simplifying Boolean logic
+        expressions from truth tables. The primary tool allows users to define
+        input variables, assign output values, and automatically generate
+        simplified <strong>Sum of Products (SOP)</strong> expressions using
+        established logic minimization techniques.
+      </p>
+
+      <p>
+        The tool is fully browser-based and does not require any software
+        installation. It is designed to support learning, experimentation,
+        and quick verification of combinational logic designs.
+      </p>
+
+      <h2>Who This Site Is For</h2>
+      <p>
+        This website is intended for students, educators, and engineers working
+        in the field of digital electronics and computer engineering. It is
+        particularly useful for:
+      </p>
+
+      <ul>
+        <li>ECE and computer engineering students studying digital logic</li>
+        <li>Educators teaching Boolean algebra and logic minimization</li>
+        <li>Engineers and hobbyists designing combinational logic circuits</li>
+      </ul>
+
+      <p>
+        The goal of this site is to make logic simplification easier to
+        understand through direct interaction and clear visual representation.
+      </p>
+    </main>
+  </div>
+
+  <script>
+    const btn = document.getElementById('themeToggle');
+    function applyTheme() {
+      const saved = localStorage.getItem('logic-theme');
+      document.body.classList.toggle('light', saved === 'light');
+      btn.textContent = document.body.classList.contains('light') ? 'Switch to dark' : 'Switch to light';
+    }
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('logic-theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      applyTheme();
+    });
+    applyTheme();
+  </script>
+</body>
+</html>
+
