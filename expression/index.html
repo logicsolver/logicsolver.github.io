@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8548954355987667"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expression to Truth Table | Boolean Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #0e1627;
+      --accent: #22d3ee;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --grid: #131c2e;
+      --hover: #1e293b;
+      --border: #1f2a40;
+      --good: #16a34a;
+      --good-surface: #122d1f;
+      --bad: #ef4444;
+      --bad-surface: #321417;
+      --shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+    body.light {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --panel-2: #f1f5f9;
+      --accent: #2563eb;
+      --text: #0f172a;
+      --muted: #4b5563;
+      --grid: #e9edf3;
+      --hover: #e3e8f2;
+      --border: #d7deea;
+      --good: #15803d;
+      --good-surface: #dff5e7;
+      --bad: #dc2626;
+      --bad-surface: #fde2e2;
+      --shadow: 0 10px 22px rgba(15, 23, 42, 0.15);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .shell {
+      width: min(900px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 24px 24px 28px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      transition: transform 0.08s ease, background 0.2s ease;
+    }
+    .nav a:hover {
+      transform: translateY(-1px);
+      background: var(--hover);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0.3px;
+    }
+    header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+    .input-area {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .input-area label {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .input-area textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: 16px;
+      resize: vertical;
+    }
+    .input-area textarea::placeholder {
+      color: var(--muted);
+    }
+    .input-area textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    button {
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.08s ease, background 0.2s ease;
+    }
+    button.primary {
+      background: var(--accent);
+      color: #021018;
+      border: none;
+    }
+    button:hover {
+      transform: translateY(-1px);
+    }
+    .output-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .output-tabs button {
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+    .output-tabs button.active {
+      background: rgba(34, 211, 238, 0.15);
+      color: var(--accent);
+      border-color: rgba(34, 211, 238, 0.4);
+    }
+    .result {
+      margin-top: 20px;
+    }
+    .grid {
+      width: 100%;
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--panel-2);
+      padding: 12px;
+    }
+    .card-grid {
+      display: grid;
+      gap: 10px;
+      grid-auto-rows: 60px;
+    }
+    .cell {
+      background: var(--grid);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.4px;
+    }
+    .cell.header {
+      background: var(--panel-2);
+      color: var(--muted);
+      border-style: dashed;
+    }
+    .cell.input {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .val-1 {
+      background: var(--good-surface);
+      color: var(--good);
+      border-color: rgba(22, 163, 74, 0.4);
+    }
+    .val-0 {
+      background: var(--bad-surface);
+      color: var(--bad);
+      border-color: rgba(239, 68, 68, 0.45);
+    }
+    .expr {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+    .expr .name {
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .expr .formula {
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+      color: var(--text);
+      font-size: 14px;
+      flex: 1;
+      text-align: right;
+      word-break: break-word;
+    }
+    .error {
+      background: var(--bad-surface);
+      border: 1px solid var(--bad);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: var(--bad);
+      margin-top: 12px;
+    }
+    .hint {
+      margin-top: 8px;
+      padding: 10px 14px;
+      background: var(--panel-2);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="./index.html">Home</a>
+        <a href="./about">About</a>
+        <a href="./privacy-policy">Privacy</a>
+        <a href="./terms">Terms</a>
+        <a href="./disclaimer">Disclaimer</a>
+      </nav>
+      <button id="themeToggle">Switch theme</button>
+    </div>
+
+    <header>
+      <h1>Expression to Truth Table</h1>
+      <p>Convert boolean expressions to truth tables and simplified forms</p>
+    </header>
+
+    <div class="input-area">
+      <label for="exprInput">Boolean Expression (variables A-Z)</label>
+      <textarea id="exprInput" placeholder="Examples:&#10;A'B + BC&#10;(A+B)(B'+C)&#10;AB + A'C + BC'"></textarea>
+      <button id="generateBtn" class="primary">Generate Truth Table</button>
+    </div>
+
+    <div class="hint">
+      <strong>Syntax:</strong> Use A-Z for variables, ' for NOT, + for OR, * or juxtaposition for AND, () for grouping
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const VARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    let exprTable = null;
+    let outputTab = 'truthTable';
+
+    function init() {
+      document.getElementById('generateBtn').addEventListener('click', generate);
+      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+      loadTheme();
+    }
+
+    function generate() {
+      const str = document.getElementById('exprInput').value.trim();
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '';
+
+      if (!str) {
+        resultDiv.innerHTML = '<div class="error">Please enter a boolean expression</div>';
+        return;
+      }
+
+      const vars = [...new Set(str.toUpperCase().match(/[A-Z]/g) || [])].sort();
+      if (vars.length === 0) {
+        resultDiv.innerHTML = '<div class="error">No variables found (use A-Z)</div>';
+        return;
+      }
+      if (vars.length > 6) {
+        resultDiv.innerHTML = '<div class="error">Maximum 6 variables allowed</div>';
+        return;
+      }
+
+      const n = vars.length;
+      const table = [];
+      for (let i = 0; i < (1 << n); i++) {
+        const inputs = [];
+        for (let b = n - 1; b >= 0; b--) inputs.push((i >> b) & 1);
+        const vals = {};
+        vars.forEach((v, idx) => { vals[v] = inputs[idx]; });
+        let out;
+        try {
+          out = evalExpr(str, vals);
+        } catch (e) {
+          resultDiv.innerHTML = '<div class="error">Invalid expression: ' + (e.message || 'parse error') + '</div>';
+          return;
+        }
+        table.push({ inputs, out: out ? 1 : 0 });
+      }
+
+      exprTable = { inputs: n, vars, table };
+      render();
+    }
+
+    function render() {
+      const resultDiv = document.getElementById('result');
+      if (!exprTable) return;
+
+      const tabs = document.createElement('div');
+      tabs.className = 'output-tabs';
+      tabs.innerHTML = `
+        <button id="tabTruthTable" class="active">Truth Table</button>
+        <button id="tabSOP">SOP</button>
+        <button id="tabPOS">POS</button>
+      `;
+      resultDiv.appendChild(tabs);
+
+      document.getElementById('tabTruthTable').addEventListener('click', () => setTab('truthTable'));
+      document.getElementById('tabSOP').addEventListener('click', () => setTab('sop'));
+      document.getElementById('tabPOS').addEventListener('click', () => setTab('pos'));
+
+      const output = document.createElement('div');
+      output.id = 'output';
+      resultDiv.appendChild(output);
+
+      renderOutput();
+    }
+
+    function setTab(tab) {
+      outputTab = tab;
+      document.getElementById('tabTruthTable').classList.toggle('active', tab === 'truthTable');
+      document.getElementById('tabSOP').classList.toggle('active', tab === 'sop');
+      document.getElementById('tabPOS').classList.toggle('active', tab === 'pos');
+      renderOutput();
+    }
+
+    function renderOutput() {
+      const output = document.getElementById('output');
+      if (!output || !exprTable) return;
+
+      output.innerHTML = '';
+
+      if (outputTab === 'truthTable') {
+        const grid = document.createElement('div');
+        grid.className = 'grid';
+        const cardGrid = document.createElement('div');
+        cardGrid.className = 'card-grid';
+        cardGrid.style.gridTemplateColumns = `repeat(${exprTable.vars.length + 1}, minmax(72px, 1fr))`;
+
+        exprTable.vars.forEach(v => {
+          const c = document.createElement('div');
+          c.className = 'cell header';
+          c.textContent = v;
+          cardGrid.appendChild(c);
+        });
+        const outCell = document.createElement('div');
+        outCell.className = 'cell header';
+        outCell.textContent = 'F';
+        cardGrid.appendChild(outCell);
+
+        exprTable.table.forEach(row => {
+          row.inputs.forEach(v => {
+            const c = document.createElement('div');
+            c.className = 'cell input';
+            c.textContent = v;
+            cardGrid.appendChild(c);
+          });
+          const c = document.createElement('div');
+          c.className = `cell input val-${row.out}`;
+          c.textContent = row.out;
+          cardGrid.appendChild(c);
+        });
+
+        grid.appendChild(cardGrid);
+        output.appendChild(grid);
+      } else {
+        const formula = outputTab === 'sop' ? generateSOP() : generatePOS();
+        const expr = document.createElement('div');
+        expr.className = 'expr';
+        expr.innerHTML = `<div class="name">${outputTab.toUpperCase()}</div><div class="formula">${formula}</div>`;
+        output.appendChild(expr);
+      }
+    }
+
+    function generateSOP() {
+      const minterms = [];
+      exprTable.table.forEach((row, idx) => {
+        if (row.out === 1) minterms.push(idx);
+      });
+      if (minterms.length === 0) return '0';
+      if (minterms.length === exprTable.table.length) return '1';
+      return minterms.map(m => {
+        let term = '';
+        for (let i = 0; i < exprTable.inputs; i++) {
+          term += exprTable.vars[i];
+          if (((m >> (exprTable.inputs - 1 - i)) & 1) === 0) term += "'";
+        }
+        return term;
+      }).join(' + ');
+    }
+
+    function generatePOS() {
+      const maxterms = [];
+      exprTable.table.forEach((row, idx) => {
+        if (row.out === 0) maxterms.push(idx);
+      });
+      if (maxterms.length === 0) return '1';
+      if (maxterms.length === exprTable.table.length) return '0';
+      return maxterms.map(m => {
+        let term = '(';
+        for (let i = 0; i < exprTable.inputs; i++) {
+          if (i > 0) term += ' + ';
+          term += exprTable.vars[i];
+          if (((m >> (exprTable.inputs - 1 - i)) & 1) === 1) term += "'";
+        }
+        return term + ')';
+      }).join(' · ');
+    }
+
+    function evalExpr(str, vals) {
+      str = str.replace(/\s+/g, '').toUpperCase();
+      let i = 0;
+
+      function parseOr() {
+        let left = parseAnd();
+        while (i < str.length && str[i] === '+') {
+          i++;
+          left = left || parseAnd();
+        }
+        return left;
+      }
+
+      function parseAnd() {
+        let left = parseFactor();
+        while (i < str.length) {
+          const c = str[i];
+          if (c === ')' || c === '+') break;
+          if (c === '*') i++;
+          left = left && parseFactor();
+        }
+        return left;
+      }
+
+      function parseFactor() {
+        if (i >= str.length) throw new Error('Unexpected end');
+        if (str[i] === '(') {
+          i++;
+          const v = parseOr();
+          if (str[i] !== ')') throw new Error('Missing )');
+          i++;
+          return v;
+        }
+        const c = str[i];
+        if (!/[A-Z]/.test(c)) throw new Error('Expected variable');
+        let v = vals[c] || 0;
+        i++;
+        while (i < str.length && str[i] === "'") {
+          i++;
+          v = v ? 0 : 1;
+        }
+        return v;
+      }
+
+      const result = parseOr();
+      if (i < str.length) throw new Error('Unexpected character');
+      return result;
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('logic-theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      updateThemeButton();
+    }
+
+    function loadTheme() {
+      if (localStorage.getItem('logic-theme') === 'light') document.body.classList.add('light');
+      updateThemeButton();
+    }
+
+    function updateThemeButton() {
+      document.getElementById('themeToggle').textContent = document.body.classList.contains('light') ? 'Switch to dark' : 'Switch to light';
+    }
+
+    init();
+  </script>
+</body>
+</html>
