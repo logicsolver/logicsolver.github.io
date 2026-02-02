@@ -6,7 +6,7 @@ window.BLOG_ENTRIES = [
   {
     title: "Understanding Truth Tables",
     excerpt: "Truth tables are the foundation of digital logic. Learn how to build them step by step and use them to simplify boolean expressions with Quine-McCluskey.",
-    url: "blog-truth-tables"
+    url: "learn/blog-truth-tables"
   },
   {
     title: "Boolean Algebra Basics",
